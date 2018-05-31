@@ -1,26 +1,17 @@
 {% extends "base.html" %}
 {% block contenu %}
-<section id="main-content">
-    <section class="wrapper">
-        <!--overview start-->
-        <div class="row">
-          <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> {{ titre }}</h3>
-            <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="{% url "dashboard" %}"> Accueil</a></li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="row">
-           <div class="col-lg-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Liste des utilisateurs
-                    </header>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
+<div class="content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                                <h4 class="title">Inventaire</h4>
+                                <p class="category">Inventaire de l'entreprise</p>
+                            </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-striped">
+                        <thead>
                             <th>#</th>
                             <th>Prénom</th>
                             <th>Nom</th>
@@ -28,39 +19,32 @@
                             <th>Email</th>
                             <th>Actif ?</th>
                             <th>Status</th>
-                        </tr>
-                    </thead>
-                <tbody>
-                {% for usager in userlist %}
-                    <tr>
-                        <th>{{ usager.id }}</th>
-                        <th>{{ usager.first_name }}</th>
-                        <th>{{ usager.last_name }}</th>
-                        <th>{{ usager.username }}</th>
-                        <th>{{ usager.email }}</th>
-                        {% if usager.is_active == 1 %}
-                            <th>Compte actif</th>
-                        {% else %}
-                            <th>Compte inactif</th>
-                        {% endif %}
-                        {% if usager.is_staff == 1 %}
-                            <th>Direction</th>
-                        {% else %}
-                            <th>Employé</th>
-                        {% endif %}
-                    </tr>
-                {% endfor %}
-                </tbody>
-              </table>
-            </section>
-          </div>
+                        </thead>
+                        <tbody>
+                        {% for usager in userlist %}
+                            <tr>
+                                <th>{{ usager.id }}</th>
+                                <th>{{ usager.first_name }}</th>
+                                <th>{{ usager.last_name }}</th>
+                                <th>{{ usager.username }}</th>
+                                <th>{{ usager.email }}</th>
+                                {% if usager.is_active == 1 %}
+                                    <th>Compte actif</th>
+                                {% else %}
+                                    <th>Compte inactif</th>
+                                {% endif %}
+                                {% if usager.is_staff == 1 %}
+                                    <th>Direction</th>
+                                {% else %}
+                                    <th>Employé</th>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        </div>
-        <!--/.row-->
-
-      </section>
-
-    </section>
-<!--main content end-->
-</section>
 {% endblock %}
+
+{% block link_utilisateurs %}active{% endblock %}

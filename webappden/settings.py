@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'l4%92&-ve-_u-o$$#)b-4(@_08l&&#cbs)u$s*(d&^7p3+p%be'
+SECRET_KEY = 'VOTRE-NOUVELLE-CLE-SECRETE-DJANGO-ICI'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,15 +79,15 @@ WSGI_APPLICATION = 'webappden.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'intranet',
-        'USER': 'pepe1',
-        'PASSWORD': 'pepe1995',
+        'NAME': 'webappden',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
 
-AUTHENTICATION_BACKENDS = ("django_python3_ldap.auth.LDAPBackend",)
+#AUTHENTICATION_BACKENDS = ("django_python3_ldap.auth.LDAPBackend",)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -128,13 +128,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # The URL of the LDAP server.
-LDAP_AUTH_URL = "ldap://192.168.2.2:389"
+LDAP_AUTH_URL = "ldap://192.168.0.109:389"
 
 # Initiate TLS on connection.
 LDAP_AUTH_USE_TLS = False
 
 # The LDAP search base for looking up users.
-LDAP_AUTH_SEARCH_BASE = "ou=Compagnie,dc=Digital-Den,dc=clg"
+LDAP_AUTH_SEARCH_BASE = "cn=Users,dc=example,dc=local"
 
 # The LDAP class that represents a user.
 LDAP_AUTH_OBJECT_CLASS = "user"
@@ -173,13 +173,13 @@ LDAP_AUTH_FORMAT_SEARCH_FILTERS = "django_python3_ldap.utils.format_search_filte
 LDAP_AUTH_FORMAT_USERNAME = "django_python3_ldap.utils.format_username_active_directory"
 
 # Sets the login domain for Active Directory users.
-LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = "Digital-Den"
+LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = "example"
 
 # The LDAP username and password of a user for querying the LDAP database for user
 # details. If None, then the authenticated user will be used for querying, and
 # the `ldap_sync_users` command will perform an anonymous query.
-LDAP_AUTH_CONNECTION_USERNAME = "intranetconn"
-LDAP_AUTH_CONNECTION_PASSWORD = "g2=Jd6J`>G~/x~.m"
+LDAP_AUTH_CONNECTION_USERNAME = "Webapp"
+LDAP_AUTH_CONNECTION_PASSWORD = "VOTRE-MOT-DE-PASSE-LDAP"
 
 # Set connection/receive timeouts (in seconds) on the underlying `ldap3` library.
 LDAP_AUTH_CONNECT_TIMEOUT = None

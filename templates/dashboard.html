@@ -1,230 +1,165 @@
 {% extends "base.html" %}
-{% load static %}
 {% block contenu %}
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
-        <!--overview start-->
+<div class="content">
+    <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> {{ titre }}</h3>
-            <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="{% url "dashboard" %}"> Accueil</a></li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box blue-bg">
-              <i class="fa fa-user"></i>
-              <div class="count">{{ nbrusers }}</div>
-              <div class="title">Utilisateurs inscrits</div>
-            </div>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box brown-bg">
-              <i class="fa fa-group"></i>
-              <div class="count">{{ nbractifs }}</div>
-              <div class="title">Utilisateurs actifs</div>
-            </div>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box dark-bg">
-              <i class="fa fa-level-up"></i>
-              <div class="count">{{ nbradmin }}</div>
-              <div class="title">Administrateurs</div>
-            </div>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box green-bg">
-              <i class="fa fa-cubes"></i>
-              <div class="count">{{ nbrinventaire }}</div>
-              <div class="title">Nombre d'articles dans l'inventaire</div>
-            </div>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-        </div>
-        <!--/.row-->
-
-        <!-- Today status end -->
-        <div class="row">
-          <div class="col-lg-6">
-            <section class="panel">
-              <header class="panel-heading">
-                Notes
-              </header>
-              <div class="panel-body">
-              {% if notes %}
-                {% for note in notes %}
-                    <div class="panel panel-default">
-                      <div class="panel-heading">Note par {{ note.added_by.first_name }} {{ note.added_by.last_name }}</div>
-                      <div class="panel-body">{{ note.note|safe }}</div>
-                      <div class="panel-footer">{{ note.date }}</div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-warning text-center">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Utilisateurs actifs</p>
+                                    {{ nbractifs }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="far fa-clock"></i> Utilisateurs actifs depuis 24h:                             </div>
+                        </div>
                     </div>
-                {% endfor %}
-              {% else %}
-                <div class="panel panel-danger">
-                  <div class="panel-heading">Aucune note</div>
                 </div>
-              {% endif %}
-
-              <form name="NoteForm" method="post">
-              {% csrf_token %}
-              {{ form }}
-              <button type="submit">Submit</button>
-            </form>
-              </div>
-            </section>
-          </div>
-
-          <div class="col-lg-6">
-            <!--Project Activity start-->
-            <section class="panel">
-              <div class="panel-body progress-panel">
-                <div class="row">
-                  <div class="col-lg-8 task-progress pull-left">
-                    <h1>To Do Everyday</h1>
-                  </div>
-                  <div class="col-lg-4">
-                    <span class="profile-ava pull-right">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                        {{ user.first_name }} {{ user.last_name }}
-                                </span>
-                  </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-primary text-center">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Administrateurs</p>
+                                    {{ nbradmin }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-briefcase"></i> Département: Direction
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <table class="table table-hover personal-task">
-                <tbody>
-                  <tr>
-                    <td>Today</td>
-                    <td>
-                      web design
-                    </td>
-                    <td>
-                      <span class="badge bg-important">Upload</span>
-                    </td>
-                    <td>
-                      <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                    </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Yesterday</td>
-                    <td>
-                      Project Design Task
-                    </td>
-                    <td>
-                      <span class="badge bg-success">Task</span>
-                    </td>
-                    <td>
-                      <div id="work-progress2"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>21-10-14</td>
-                    <td>
-                      Generate Invoice
-                    </td>
-                    <td>
-                      <span class="badge bg-success">Task</span>
-                    </td>
-                    <td>
-                      <div id="work-progress3"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>22-10-14</td>
-                    <td>
-                      Project Testing
-                    </td>
-                    <td>
-                      <span class="badge bg-primary">To-Do</span>
-                    </td>
-                    <td>
-                      <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>24-10-14</td>
-                    <td>
-                      Project Release Date
-                    </td>
-                    <td>
-                      <span class="badge bg-info">Milestone</span>
-                    </td>
-                    <td>
-                      <div id="work-progress4"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>28-10-14</td>
-                    <td>
-                      Project Release Date
-                    </td>
-                    <td>
-                      <span class="badge bg-primary">To-Do</span>
-                    </td>
-                    <td>
-                      <div id="work-progress5"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Last week</td>
-                    <td>
-                      Project Release Date
-                    </td>
-                    <td>
-                      <span class="badge bg-primary">To-Do</span>
-                    </td>
-                    <td>
-                      <div id="work-progress1"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>last month</td>
-                    <td>
-                      Project Release Date
-                    </td>
-                    <td>
-                      <span class="badge bg-success">To-Do</span>
-                    </td>
-                    <td>
-                      <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-            <!--Project Activity end-->
-          </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-danger text-center">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Active Directory</p>
+                                    <p>{{ adname }}</p>
+                                    <p>{{ addb }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="far fa-user"></i> L'application web utilise l'utilisateur <strong>{{ adhook }}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-success text-center">
+                                    <i class="fas fa-cubes"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Inventaire</p>
+                                    {{ nbrinventaire }} items
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-money-check-alt"></i> Valeur totale: 0$
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- statics end -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Tchat interne</h4>
+                        <p class="category">Messages aux autres employés</p>
+                    </div>
+                    <div class="content">
+                        {% if notes %}
+                        {% for note in notes %}
+                        <div class="comment">
+                            <div class="username">
+                                {% if not note.added_by.first_name and not note.added_by.last_name %}
+                                {{ note.added_by.username }}
+                                {% else %}
+                                {{ note.added_by.first_name }} {{ note.added_by.last_name }}
+                                {% endif %}
+                            </div>
+                            <div class="commentaire">{{ note.note|safe }}</div>
+                            <div class="date">{{ note.date }}</div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                            <p>Aucune note</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <hr>
+                        <div class="row" style="margin:0.5rem 0.5rem 0.5rem;">
+                            <form name="NoteForm" method="post">
+                            {% csrf_token %}
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <input id="note" required="required" name="note" type="text" class="form-control border-input" placeholder="Ajouter une note">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd"><i class="fas fa-paper-plane"></i> Ajouter une note</button>
+                                    </div>
+                                </div>
 
-      </section>
-      <div class="text-right">
-        <div class="credits">
-          <a href="{% url "dashboard" %}">DigitalDen</a> 2018</a>
+                            </form>
+
+                        </div>
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <span><b> Erreur </b> Veuillez entrer un message de moins de 250 caractères.</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
-    <!--main content end-->
-  </section>
-  <!-- container section start -->
+    </div>
+</div>
 {% endblock %}
+
+{% block link_dashboard %}active{% endblock %}
