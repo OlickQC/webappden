@@ -53,11 +53,18 @@ jobs:
         echo "DB_PASSWORD=rootpass" >> .env
         echo "DB_HOST=127.0.0.1" >> .env
         echo "DB_PORT=3306" >> .env
-        echo "LDAP_AUTH_URL=ldap://localhost:389" >> .env
+        echo "LDAP_AUTH_URL=ldap://127.0.0.1:389" >> .env
         echo "LDAP_AUTH_SEARCH_BASE=cn=Users,dc=test,dc=local" >> .env
         echo "LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN=test" >> .env
         echo "LDAP_AUTH_CONNECTION_USERNAME=test" >> .env
         echo "LDAP_AUTH_CONNECTION_PASSWORD=test" >> .env
+    
+    - name: Wait for MySQL
+      run: |
+        until mysqladmin ping -h 127.0.0.1 -u root -prootpass --silent; do
+          echo 'waiting for mysql...'
+          sleep 2
+        done
     
     - name: Run migrations
       run: |
