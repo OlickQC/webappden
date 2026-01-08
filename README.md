@@ -3,7 +3,17 @@ Application d'intranet dans le cadre du projet final de mon AEC en Administratio
 
 **⚠️ Note**: Projet scolaire de 2018 remis à jour en janvier 2026 pour fonctionner avec les technologies modernes.
 
-## 🔄 Mises à jour 2026
+## Objectif original (2018)
+Mon équipe était composée de 5 personnes et j'avais comme objectif de faire une sorte d'intranet qui allait s'authentifier sur l'Active Directory du projet.
+
+## Fonctionnalités
+* Voir l'inventaire des équipements de l'entreprise fictive;
+* Pouvoir laisser des notes sur la page d'accueil avec une sorte de petit tchat (sans websocket);
+* Un look épuré (le look a été pris sur Internet par manque de temps pour le projet);
+* Interface de connexion qui utilise LDAP pour synchroniser la base de donnée Active Directory avec MySQL;
+* Une table dans la base de donnée MySQL pour l'inventaire de l'entreprise et les notes.
+
+## Mises à jour 2026
 
 Ce projet a été modernisé et sécurisé en janvier 2026. Voici les principales modifications :
 
@@ -38,17 +48,7 @@ Ce projet a été modernisé et sécurisé en janvier 2026. Voici les principale
 - ✅ **Fichiers .env** : Templates fournis (.env.example, .env.docker)
 - ✅ **Documentation Docker** : Guide complet de déploiement (DOCKER_DEPLOYMENT.md)
 - ✅ **Port configurable** : Support de multiples instances
-
-## Objectif original (2018)
-Mon équipe était composée de 5 personnes et j'avais comme objectif de faire une sorte d'intranet qui allait s'authentifier sur l'Active Directory du projet.
-
-## Fonctionnalités
-* Voir l'inventaire des équipements de l'entreprise fictive;
-* Pouvoir laisser des notes sur la page d'accueil avec une sorte de petit tchat (sans websocket);
-* Un look épuré (le look a été pris sur Internet par manque de temps pour le projet);
-* Interface de connexion qui utilise LDAP pour synchroniser la base de donnée Active Directory avec MySQL;
-* Une table dans la base de donnée MySQL pour l'inventaire de l'entreprise et les notes.
-
+- 
 ## Technologies utilisées
 
 ### Stack actuel (2026)
