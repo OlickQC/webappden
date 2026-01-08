@@ -228,3 +228,42 @@ LOGGING = {
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = 'dashboard'
+
+# ===========================
+# SECURITY SETTINGS FOR PRODUCTION
+# ===========================
+# Enable these when behind Cloudflare + NGINX Proxy Manager with SSL
+
+# Trust the X-Forwarded-Proto header from the proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Security headers (only when DEBUG=False)
+if not DEBUG:
+    # Redirect all HTTP to HTTPS
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
+    
+    # HTTP Strict Transport Security (HSTS)
+    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=31536000, cast=int)  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True, cast=bool)
+    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=True, cast=bool)
+    
+    # Secure cookies
+    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
+    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
+    
+    # Prevent browsers from guessing content types
+    SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default=True, cast=bool)
+    
+    # Enable browser XSS protection
+    SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=True, cast=bool)
+    
+    # Prevent clickjacking attacks
+    X_FRAME_OPTIONS = config('X_FRAME_OPTIONS', default='DENY')
+
+# CSRF Trusted Origins (required for Django 4.0+)
+# Add your domain(s) here
+CSRF_TRUSTED_ORIGINS = config(
+    'CSRF_TRUSTED_ORIGINS',
+    default='https://webappden.yourdomain.com',
+    cast=lambda v: [s.strip() for s in v.split(',')]
+)
