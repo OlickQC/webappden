@@ -222,5 +222,5 @@ This project is under educational license. The front-end design comes from Paper
 
 * 📖 [Docker Deployment Guide (English)](docs/DOCKER_DEPLOYMENT_EN.md)
 * 📖 [Guide de déploiement Docker (Français)](docs/DOCKER_DEPLOYMENT.md)
-* 📝 [Changelog (English)](docs/CHANGELOG_EN.md)
-* 📝 [Changelog (Français)](docs/CHANGELOG.md)
+* 📝 [Changelog (English)](CHANGELOG_EN.md)
+* 📝 [Changelog (Français)](CHANGELOG.md)

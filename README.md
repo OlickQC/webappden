@@ -222,5 +222,5 @@ Ce projet est sous licence éducative. Le design front-end provient de Paper Das
 
 * 📖 [Guide de déploiement Docker (Français)](docs/DOCKER_DEPLOYMENT.md)
 * 📖 [Docker Deployment Guide (English)](docs/DOCKER_DEPLOYMENT_EN.md)
-* 📝 [Changelog (Français)](docs/CHANGELOG.md)
-* 📝 [Changelog (English)](docs/CHANGELOG_EN.md)
+* 📝 [Changelog (Français)](CHANGELOG.md)
+* 📝 [Changelog (English)](CHANGELOG_EN.md)
