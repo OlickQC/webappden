@@ -28,7 +28,8 @@ COPY . .
 
 # Copier et rendre exécutable le script d'entrée
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh && \
+    sed -i 's/\r$//' /entrypoint.sh
 
 # Exposer le port
 EXPOSE 8000
