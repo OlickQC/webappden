@@ -97,3 +97,19 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Scripts de nettoyage Git (contiennent des informations sensibles)
+clean_git_history.ps1
+clean_git_history.sh
+replacements.txt
+
+# Backups
+*-backup*/
+backup-*/
