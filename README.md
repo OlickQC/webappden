@@ -3,6 +3,8 @@ Application d'intranet dans le cadre du projet final de mon AEC en Administratio
 
 **⚠️ Note**: Projet scolaire de 2018 remis à jour en janvier 2026 pour fonctionner avec les technologies modernes.
 
+**[🇬🇧 English version](README_EN.md)**
+
 ## Objectif original (2018)
 Mon équipe était composée de 5 personnes et j'avais comme objectif de faire une sorte d'intranet qui allait s'authentifier sur l'Active Directory du projet.
 
@@ -146,7 +148,7 @@ L'application sera accessible sur http://localhost:8000
 
 Pour un déploiement avec Docker sur Unraid ou autre serveur, consultez la documentation complète :
 
-📖 **[Guide de déploiement Docker](DOCKER_DEPLOYMENT.md)**
+📖 **[Guide de déploiement Docker](docs/DOCKER_DEPLOYMENT.md)**
 
 Démarrage rapide Docker :
 ```bash
@@ -215,3 +217,10 @@ Ce projet est sous licence éducative. Le design front-end provient de Paper Das
 * Design du front-end: https://github.com/creativetimofficial/paper-dashboard/ - MIT License
 * Django Framework: https://www.djangoproject.com/
 * Documentation Docker: https://docs.docker.com/
+
+## Documentation
+
+* 📖 [Guide de déploiement Docker (Français)](docs/DOCKER_DEPLOYMENT.md)
+* 📖 [Docker Deployment Guide (English)](docs/DOCKER_DEPLOYMENT_EN.md)
+* 📝 [Changelog (Français)](docs/CHANGELOG.md)
+* 📝 [Changelog (English)](docs/CHANGELOG_EN.md)
