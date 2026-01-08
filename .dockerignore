@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+
+# Django
+*.log
+db.sqlite3
+staticfiles/
+media/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+
+# Documentation
+*.md
+!README.md
+
+# Scripts de nettoyage
+clean_git_history.*
+replacements.txt
+
+# Backups
+*-backup*/
+backup-*/
+
+# Tests
+.coverage
+htmlcov/
+.pytest_cache/

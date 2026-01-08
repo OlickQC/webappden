@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     gcc \
     default-libmysqlclient-dev \
     pkg-config \
+    netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
 # Créer le répertoire de l'application
@@ -25,11 +26,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copier le code de l'application
 COPY . .
 
+# Copier et rendre exécutable le script d'entrée
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Exposer le port
 EXPOSE 8000
 
-# Collecter les fichiers statiques
-RUN python manage.py collectstatic --noinput || true
-
 # Commande de démarrage
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "webappden.wsgi:application"]
+CMD ["/entrypoint.sh"]

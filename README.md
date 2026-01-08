@@ -36,6 +36,8 @@ Ce projet a été modernisé et sécurisé en janvier 2026. Voici les principale
 - ✅ **Migration des vues d'authentification** : `auth_views.login` → `LoginView.as_view()`
 - ✅ **Correction des imports obsolètes** : Suppression des imports dépréciés
 - ✅ **Configuration ALLOWED_HOSTS dynamique** : Support pour plusieurs domaines/IPs
+- ✅ **DEFAULT_AUTO_FIELD** : Configuration BigAutoField pour éliminer les warnings
+- ✅ **STATICFILES_DIRS** : Configuration correcte des fichiers statiques (CSS/JS/images)
 
 ### Fonctionnalités ajoutées
 - ✅ **Support Docker complet** : Dockerfile + docker-compose.yml pour déploiement conteneurisé
@@ -123,12 +125,17 @@ CREATE DATABASE webappden CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 python manage.py migrate
 ```
 
-7. **Créer un superutilisateur**
+7. **Collecter les fichiers statiques**
+```bash
+python manage.py collectstatic --noinput
+```
+
+8. **Créer un superutilisateur**
 ```bash
 python manage.py createsuperuser
 ```
 
-8. **Lancer le serveur de développement**
+9. **Lancer le serveur de développement**
 ```bash
 python manage.py runserver
 ```
@@ -152,6 +159,9 @@ docker-compose up -d
 
 # Exécuter les migrations
 docker exec -it webappden python manage.py migrate
+
+# Collecter les fichiers statiques
+docker exec -it webappden python manage.py collectstatic --noinput
 
 # Créer un superutilisateur
 docker exec -it webappden python manage.py createsuperuser

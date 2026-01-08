@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.1] - Janvier 2026 - Correctifs fichiers statiques et warnings
+
+### 🐛 Corrections
+- **Configuration DEFAULT_AUTO_FIELD** : Ajout de `DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'` pour éliminer les warnings Django 4.2
+- **Configuration STATICFILES_DIRS** : Ajout du chemin vers `dashboard/static` pour servir correctement les fichiers CSS/JS/images
+- **Script entrypoint.sh** : Automatisation de la collecte des fichiers statiques au démarrage du conteneur Docker
+- **Volume Docker pour statiques** : Ajout d'un volume persistant pour les fichiers statiques collectés
+
+### 📝 Documentation
+- Ajout de l'étape `collectstatic` dans les guides de déploiement
+- Documentation sur l'importance de la collecte des fichiers statiques
+- Mise à jour de DOCKER_DEPLOYMENT.md avec les nouvelles étapes
+
 ## [2.0.0] - Janvier 2026 - Modernisation complète
 
 ### 🔒 Sécurité

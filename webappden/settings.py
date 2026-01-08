@@ -144,6 +144,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Dossier contenant les fichiers statiques de l'application
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'dashboard/static'),
+]
+
+# Configuration des clés primaires par défaut pour Django 4.2+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 # The URL of the LDAP server.
 LDAP_AUTH_URL = config('LDAP_AUTH_URL', default='ldap://192.168.0.109:389')
 

@@ -68,9 +68,9 @@ Le `docker-compose.yml` inclut déjà un conteneur MariaDB.
 5. Le plugin détectera automatiquement le `docker-compose.yml`
 6. Cliquez sur **Compose Up** pour démarrer
 
-### 5. Migrations de la base de données
+### 5. Migrations et configuration initiale
 
-Après le premier démarrage, exécutez les migrations Django :
+Après le premier démarrage, exécutez les commandes suivantes :
 
 ```bash
 # Accéder au conteneur
@@ -79,12 +79,17 @@ docker exec -it webappden bash
 # Exécuter les migrations
 python manage.py migrate
 
+# Collecter les fichiers statiques (CSS, JS, images)
+python manage.py collectstatic --noinput
+
 # Créer un superutilisateur (optionnel)
 python manage.py createsuperuser
 
 # Quitter le conteneur
 exit
 ```
+
+**Note importante** : La commande `collectstatic` est essentielle pour que les fichiers CSS, JavaScript et images s'affichent correctement.
 
 ### 6. Accéder à l'application
 

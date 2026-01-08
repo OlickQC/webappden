@@ -28,8 +28,8 @@ services:
       - LDAP_AUTH_CONNECTION_PASSWORD=${LDAP_AUTH_CONNECTION_PASSWORD}
     
     volumes:
-      - ./dashboard/static:/app/dashboard/static
-      - ./templates:/app/templates
+      - static-files:/app/staticfiles
+      - ./dashboard/static:/app/dashboard/static:ro
     
     networks:
       - webappden-network
@@ -72,4 +72,6 @@ networks:
 
 volumes:
   mariadb-data:
+    driver: local
+  static-files:
     driver: local
