@@ -19,7 +19,7 @@ Mon équipe était composée de 5 personnes et j'avais comme objectif de faire u
 * NGINX (https://www.nginx.com/)
 
 ## Auteurs
-* Olivier Example (https://github.com/olickqc)
+* Olivier (https://github.com/olickqc)
 
 ## Sources
 Design du front-end: https://github.com/creativetimofficial/paper-dashboard/, sous license MIT
