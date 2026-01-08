@@ -13,18 +13,56 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.7, 3.8, 3.9]
+        python-version: ["3.10", "3.11", "3.12"]
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: rootpass
+          MYSQL_DATABASE: test_webappden
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: actions/checkout@v4
+    
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libmysqlclient-dev pkg-config
+    
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    
+    - name: Create .env file
+      run: |
+        echo "SECRET_KEY=test-secret-key-for-ci-only" > .env
+        echo "DEBUG=True" >> .env
+        echo "ALLOWED_HOSTS=localhost,127.0.0.1" >> .env
+        echo "DB_NAME=test_webappden" >> .env
+        echo "DB_USER=root" >> .env
+        echo "DB_PASSWORD=rootpass" >> .env
+        echo "DB_HOST=127.0.0.1" >> .env
+        echo "DB_PORT=3306" >> .env
+        echo "LDAP_AUTH_URL=ldap://localhost:389" >> .env
+        echo "LDAP_AUTH_SEARCH_BASE=cn=Users,dc=test,dc=local" >> .env
+        echo "LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN=test" >> .env
+        echo "LDAP_AUTH_CONNECTION_USERNAME=test" >> .env
+        echo "LDAP_AUTH_CONNECTION_PASSWORD=test" >> .env
+    
+    - name: Run migrations
+      run: |
+        python manage.py migrate
+    
     - name: Run Tests
       run: |
         python manage.py test
