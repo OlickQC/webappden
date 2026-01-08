@@ -21,7 +21,7 @@ Transférez ces fichiers depuis votre PC vers le répertoire Unraid :
 - `.env.docker` (renommer en `.env`)
 - Tout le code de l'application
 
-**Méthode recommandée** : Utiliser git sur Unraid
+**Méthode recommandée** : Utiliser git sur Unraid (supprimer le docker-compose.yml déjà la)
 ```bash
 cd /mnt/user/appdata/webappden
 git clone https://github.com/OlickQC/webappden.git .
