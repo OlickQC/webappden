@@ -39,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dashboard.apps.DashboardConfig',
-    'django_python3_ldap',
 ]
+
+# Ajouter LDAP seulement si activé
+if config('LDAP_ENABLED', default=False, cast=bool):
+    INSTALLED_APPS.append('django_python3_ldap')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -91,7 +94,16 @@ DATABASES = {
     }
 }
 
-#AUTHENTICATION_BACKENDS = ("django_python3_ldap.auth.LDAPBackend",)
+# Configuration de l'authentification
+if config('LDAP_ENABLED', default=False, cast=bool):
+    AUTHENTICATION_BACKENDS = (
+        'django_python3_ldap.auth.LDAPBackend',
+        'django.contrib.auth.backends.ModelBackend',
+    )
+else:
+    AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+    )
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

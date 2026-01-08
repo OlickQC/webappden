@@ -53,11 +53,7 @@ jobs:
         echo "DB_PASSWORD=rootpass" >> .env
         echo "DB_HOST=127.0.0.1" >> .env
         echo "DB_PORT=3306" >> .env
-        echo "LDAP_AUTH_URL=ldap://127.0.0.1:389" >> .env
-        echo "LDAP_AUTH_SEARCH_BASE=cn=Users,dc=test,dc=local" >> .env
-        echo "LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN=test" >> .env
-        echo "LDAP_AUTH_CONNECTION_USERNAME=test" >> .env
-        echo "LDAP_AUTH_CONNECTION_PASSWORD=test" >> .env
+        echo "LDAP_ENABLED=False" >> .env
     
     - name: Wait for MySQL
       run: |
