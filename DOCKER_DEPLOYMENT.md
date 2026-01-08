@@ -139,11 +139,53 @@ docker-compose up -d --build
 
 ### 9. Mise à jour de l'application
 
+#### Via SSH (méthode recommandée)
+
+```bash
+# Se connecter à Unraid en SSH
+ssh root@192.168.1.40
+
+# Naviguer vers le dossier du stack
+cd /mnt/user/appdata/webappden
+
+# Récupérer les dernières modifications depuis GitHub
+git pull
+
+# Reconstruire et redémarrer les conteneurs
+docker-compose down
+docker-compose up -d --build
+
+# Vérifier les logs
+docker-compose logs -f webappden
+```
+
+#### Via Compose Manager (interface Unraid)
+
+1. Ouvrez **Compose Manager** dans Unraid
+2. Trouvez votre stack **webappden**
+3. Cliquez sur **Compose Down** (arrêter les conteneurs)
+4. En SSH, exécutez `git pull` dans `/mnt/user/appdata/webappden`
+5. Retournez dans Compose Manager
+6. Cliquez sur **Compose Up** (redémarrer)
+
+**Note** : Le conteneur redémarrera automatiquement et exécutera :
+- Les nouvelles migrations de base de données
+- La collecte des fichiers statiques mis à jour
+- Le redéploiement de l'application
+
+#### Mise à jour sans reconstruction (changements .env seulement)
+
+Si vous modifiez uniquement le fichier `.env` :
+
 ```bash
 cd /mnt/user/appdata/webappden
-git pull
-docker-compose up -d --build
+nano .env  # Modifier vos variables
+docker-compose restart webappden
 ```
+
+Ou via Compose Manager :
+1. Modifiez le `.env` via l'éditeur de fichiers Unraid
+2. Dans Compose Manager, cliquez sur **Restart** pour le stack webappden
 
 ## Troubleshooting
 
