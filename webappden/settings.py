@@ -235,7 +235,7 @@ LOGIN_REDIRECT_URL = 'dashboard'
 # ===========================
 # Enable these when behind Cloudflare + NGINX Proxy Manager with SSL
 
-# Trust the X-Forwarded-Proto header from the proxy
+# Trust the X-Forwarded-Proto header from the proxy (MUST be before SECURE_SSL_REDIRECT)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Security headers (only when DEBUG=False)
