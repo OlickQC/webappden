@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  webappden:
+    build: .
+    container_name: webappden
+    restart: unless-stopped
+    ports:
+      - "8585:8000"
+    environment:
+      # Django
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG:-False}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-*}
+      
+      # Base de données MariaDB
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      
+      # LDAP Configuration
+      - LDAP_AUTH_URL=${LDAP_AUTH_URL}
+      - LDAP_AUTH_SEARCH_BASE=${LDAP_AUTH_SEARCH_BASE}
+      - LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN=${LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN}
+      - LDAP_AUTH_CONNECTION_USERNAME=${LDAP_AUTH_CONNECTION_USERNAME}
+      - LDAP_AUTH_CONNECTION_PASSWORD=${LDAP_AUTH_CONNECTION_PASSWORD}
+    
+    volumes:
+      - ./dashboard/static:/app/dashboard/static
+      - ./templates:/app/templates
+    
+    networks:
+      - webappden-network
+    
+    depends_on:
+      - db
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  db:
+    image: mariadb:latest
+    container_name: webappden-db
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD:-rootpassword}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    networks:
+      - webappden-network
+    
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  webappden-network:
+    driver: bridge
+
+volumes:
+  mariadb-data:
+    driver: local
