@@ -5,7 +5,6 @@ from .models import Inventaire, Notes
 from .forms import NoteForm
 from datetime import datetime
 from webappden import settings
-from django.contrib.auth.views import login
 from decimal import Decimal
 @login_required
 def dashboard(request):

@@ -20,7 +20,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
-    path('login/', auth_views.login, name="login", kwargs={'redirect_authenticated_user': True}),
+    path('login/', auth_views.LoginView.as_view(redirect_authenticated_user=True), name="login"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('utilisateurs/', views.utilisateurs, name="utilisateurs"),
     path('inventaire/', views.inventaire, name="inventaire"),
